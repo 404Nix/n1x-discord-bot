@@ -1,6 +1,11 @@
 import nextcord
 from nextcord.ext import commands
 import os
+from dotenv import load_dotenv
+
+
+load_dotenv()
+token = os.getenv('TOKEN')
 
 intents = nextcord.Intents.all()
 intents.members= True
@@ -29,12 +34,12 @@ async def reload(ctx, extension):
     bot.reload_extension(f"cogs.{extension}")
     await ctx.send(f"Reloaded {extension}")
 
-for i in os.listdir("./testing/cogs"):
+for i in os.listdir("./cogs"):
     if i.endswith(".py"):
         bot.load_extension(f"cogs.{i[:-3]}")
         #print(f"loaded cogs {i}")
 
 
-      
 
-bot.run("MTA2MDk4NjYxOTE5MDA2MzE2NQ.GoDm9G.YrLdGpJAICCbUCXJcFOrHIjtSuqRcQdO0fcogI")
+
+bot.run(token)
